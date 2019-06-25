@@ -10,6 +10,29 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <h1>LOGO</h1>
+        </div>
+        <% if artist_signed_in? %>
+          <div align="right">
+            <p align="right"><%= link_to 'Sign Out', destroy_artist_session_path, :method => :delete %>
+            </p>
+          </div>
+        <% else %>
+          <div align="right">
+            <p align="right"><%= link_to 'Sign in', new_artist_session_path %>
+              <%= link_to 'Sign up', new_artist_registration_path %>
+            </p>
+          </div> 
+        <% end %>   
+      </div>
+    </nav>
+    <hr>
+
+      </div>    
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
