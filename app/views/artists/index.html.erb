@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+	img {
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+	  padding: 5px;
+	  width: 150px;
+	}
+  </style>
+
+</head>
+
   <body>
-  	<div class="row">
-  	  <% @artist.each do |artist| %>
-  	  	<div class="col-md-3">
-  	  	  <%= link_to "#{artist.name}", artist_path(artist) %>
-  	  	</div>
-  	  <% end %>
+  	<div class="container">
+	  	<div class="row">
+	  	  <% @artist.each do |artist| %>
+	  	  	<div class="col-md-3">
+	  	  	  <div class="thumbnail">
+	  	  	    <div class="caption">
+	  	  	      <p><%= image_tag artist.photo.url(:medium)%></p>
+	  	  	      <p><%= link_to "#{artist.name}", artist_path(artist) %></p>
+	  	  	    </div>
+	  	  	  </div>
+	  	  	</div>
+	  	  <% end %>
+	  	  <!-- <div class="col-md-4"> -->
+	      	
+	          <!-- <a href="/w3images/lights.jpg" target="_blank"> -->
+	          	<!-- <img src="/w3images/lights.jpg" alt="Lights" style="width:100%"> -->
+	          	
+	            <!-- <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p> -->
+	          <!-- </div> -->
+	        <!-- </a> -->
+	      <!-- </div> -->
+	    </div>
+
+  	  
   	</div>
 
 
