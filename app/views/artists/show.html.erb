@@ -24,7 +24,9 @@
 		  		  </td>
 		  		  <td height= "200" width="1000">
 		  		  	<div align="right">
-		  		  	  <button type="button"  data-toggle="modal" data-target="#myModal3">Edit Profile</button>
+		  		  	  <% if artist_signed_in? %>
+		  		  	    <button type="button"  data-toggle="modal" data-target="#myModal3">Edit Profile</button>
+		  		  	  <% end %>
 		  		  	</div>
 		  		  	<div class="modal fade" id="myModal3" role="dialog">
 					  <div class="modal-dialog">
@@ -48,7 +50,9 @@
 		  		</tr>
 		  	  </tbody>
 		  	</table>
-		  	<button type="button"  data-toggle="modal" data-target="#myModal">Upload profile photo</button>
+		  	<% if artist_signed_in? %>
+		  	  <button type="button"  data-toggle="modal" data-target="#myModal">Upload profile photo</button>
+		  	<% end %>
 				<!-- Modal -->
 			<div class="modal fade" id="myModal" role="dialog">
 			  <div class="modal-dialog">
@@ -76,7 +80,9 @@
 	</div>
     <hr>
 	<h1>Paintings</h1>
-    <div align="right"><button type="button"  data-toggle="modal" data-target="#myModal2">Add Painting</button></div>
+	<% if artist_signed_in? %>
+      <div align="right"><button type="button"  data-toggle="modal" data-target="#myModal2">Add Painting</button></div>
+    <% end %>
     <div class="modal fade" id="myModal2" role="dialog">
 	  <div class="modal-dialog">
 	    <!-- Modal content-->
