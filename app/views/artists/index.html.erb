@@ -15,36 +15,21 @@
 	  width: 150px;
 	}
   </style>
-
 </head>
-
-  <body>
-  	<div class="container">
-	  	<div class="row">
-	  	  <% @artist.each do |artist| %>
-	  	  	<div class="col-md-3">
-	  	  	  <div class="thumbnail">
-	  	  	    <div class="caption">
-	  	  	      <p><%= image_tag artist.photo.url(:medium)%></p>
-	  	  	      <p><%= link_to "#{artist.name}", artist_path(artist) %></p>
-	  	  	    </div>
-	  	  	  </div>
-	  	  	</div>
-	  	  <% end %>
-	  	  <!-- <div class="col-md-4"> -->
-	      	
-	          <!-- <a href="/w3images/lights.jpg" target="_blank"> -->
-	          	<!-- <img src="/w3images/lights.jpg" alt="Lights" style="width:100%"> -->
-	          	
-	            <!-- <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p> -->
-	          <!-- </div> -->
-	        <!-- </a> -->
-	      <!-- </div> -->
-	    </div>
-
-  	  
-  	</div>
-
-
-  </body>
+<body>
+  <div class="container">
+    <div class="row">
+	  <% @artist.each do |artist| %>
+	    <div class="col-md-3">
+		  <div class="thumbnail">
+		    <div class="caption">
+		  	  <p><%= image_tag artist.photo.url(:medium)%></p>
+		  	  <p><%= link_to "#{artist.name}", artist_path(artist) %></p>
+		  	</div>
+		  </div>
+		</div>
+	  <% end %>
+    </div>
+  </div>
+ </body>
 </html>

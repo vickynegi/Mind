@@ -1,3 +1,117 @@
-<%= @artist.name %>
-<%= @artist.email %>
-<%= @artist.phone %>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="panel panel-default">
+	  <div class="panel-body">
+		<div class="row">
+		  <div class="table-responsive">
+		  	<table class="table">
+		  	  <tbody>
+		  	  	<tr>
+		  		  <td><%= image_tag @artist.photo.url(:medium), class: "photo-show", height: "200", width:"200"%>
+		  	      </td>
+		  	      <td>
+		  			<h1><%= @artist.name %></h1>
+		  			<br>
+		  			<%= @artist.city %>, <%= @artist.country %>
+		  		  </td>
+		  		  <td height= "200" width="1000">
+		  		  	<%= @artist.description %>
+		  		  	<br><br><br><br><br><br><br>
+		  		  	<div align="right"><%= @artist.email %> | <%= @artist.phone %></div>
+		  		  </td>
+		  		</tr>
+		  	  </tbody>
+		  	</table>
+		  	<button type="button"  data-toggle="modal" data-target="#myModal">Upload profile photo</button>
+				<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <!-- <h4 class="modal-title">Modal Header</h4> -->
+			      </div>
+				  <div class="modal-body">
+					<%= simple_form_for @artist, url: save_photo_artist_path(@artist.id) do |form| %>
+					  <%= form.input :photo, as: :file %>
+					  <%= form.submit "Upload profile photo" %>
+					<% end %>
+				  </div>
+				  <div class="modal-footer">
+			  		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+    <hr>
+	<h1>Paintings</h1>
+    <div align="right"><button type="button"  data-toggle="modal" data-target="#myModal2">Add Painting</button></div>
+
+    
+    <div class="modal fade" id="myModal2" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <!-- <h4 class="modal-title">Modal Header</h4> -->
+	      </div>
+		  <div class="modal-body">
+	  		<p>Some text in the modal.</p>
+	  		<%#= form_for @artist, url: save_photo_artist_path(@artist.id), html: { multipart: true } do |form| %>
+				  <%#= form.file_field :photo %>
+				  <%#= image_tag @artist.photo.url(:medium) %>
+				  <%#= form.submit %>
+			<%# end %>
+			<%#= simple_form_for @artist, url: save_photo_artist_path(@artist.id) do |form| %>
+			  <%#= form.input :photo, as: :file %>
+			  <%#= form.submit %>
+			<%# end %>
+			<%= form_for @artist, url: save_paintings_artist_path(@artist.id), html: { multipart: true } do |f| %>
+			  <%= f.file_field :images, multiple: true %>
+			  <%= f.submit "Add paintings" %>
+			<% end %>
+		  </div>
+		  <div class="modal-footer">
+	  		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+		</div>
+	  </div>
+	</div>
+	
+	  <!-- <div class="table-responsive"> -->
+		<!-- <table class="table"> -->
+		   <!-- <tbody> -->
+		  	 <!-- <tr> -->
+		  	 <div class="row">  
+		  	   <% @artist.paintings.each do |painting| %>
+		  	     <div class="col-md-3">
+		  	   <!-- <div class="col-md-3"> -->
+		  	     <!-- <td  width="5%" height="50%"> -->
+                   <%= image_tag painting.image.url(:medium), class: "painting-show", height: "200", width:"200"%>
+                   <div align="center"><%= painting.image_file_name %></div>
+                 <!-- </td> -->
+                 </div>
+               <% end %>
+             </div>
+           <!-- </div> -->
+             <!-- </tr> -->
+           <!-- </tbody> -->
+        <!-- </table> -->
+      <!-- </div> -->
+    
+</body>
+</html>

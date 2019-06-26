@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :update, :edit]
+  before_action :set_artist, only: [:show, :update, :edit, :save_photo, :save_paintings]
 
   def index
     @artist = Artist.all
@@ -19,6 +19,18 @@ class ArtistsController < ApplicationController
   end
 
   def update
+    @artist.update(params["artist"].permit!)
+    render :show
+  end
+
+  def save_photo
+    @artist.update(params["artist"].permit!)
+    redirect_to :action => "show"
+  end
+
+  def save_paintings
+    @artist.images=(params["artist"].permit!)
+    redirect_to :action => "show"
   end
 
   private
@@ -27,7 +39,7 @@ class ArtistsController < ApplicationController
       @artist = Artist.find_by(id: params[:id]) 
     end
 
-    def tag_params
-      params.permit(:name, :description)
+    def artist_params
+      params.permit(:name, :description, :phone, :city, :country, :username, :email, :encrypted_password, :photo, images: [])
     end
 end
