@@ -19,6 +19,8 @@ class ArtistsController < ApplicationController
   end
 
   def update
+    country = ISO3166::Country[params["artist"]["country"]]
+    params["artist"]["country"] = country.translations[I18n.locale.to_s] || country.name
     @artist.update(params["artist"].permit!)
     render :show
   end

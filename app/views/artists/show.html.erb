@@ -23,7 +23,25 @@
 		  			<%= @artist.city %>, <%= @artist.country %>
 		  		  </td>
 		  		  <td height= "200" width="1000">
-		  		  	<%= @artist.description %>
+		  		  	<div align="right">
+		  		  	  <button type="button"  data-toggle="modal" data-target="#myModal3">Edit Profile</button>
+		  		  	</div>
+		  		  	<div class="modal fade" id="myModal3" role="dialog">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					      </div>
+						  <div class="modal-body">
+							<%= render 'form' %>
+						  </div>
+						  <div class="modal-footer">
+					  		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+						</div>
+					  </div>
+					</div>
+					<%= @artist.description %>
 		  		  	<br><br><br><br><br><br><br>
 		  		  	<div align="right"><%= @artist.email %> | <%= @artist.phone %></div>
 		  		  </td>
@@ -59,8 +77,6 @@
     <hr>
 	<h1>Paintings</h1>
     <div align="right"><button type="button"  data-toggle="modal" data-target="#myModal2">Add Painting</button></div>
-
-    
     <div class="modal fade" id="myModal2" role="dialog">
 	  <div class="modal-dialog">
 	    <!-- Modal content-->
@@ -70,16 +86,6 @@
 	          <!-- <h4 class="modal-title">Modal Header</h4> -->
 	      </div>
 		  <div class="modal-body">
-	  		<p>Some text in the modal.</p>
-	  		<%#= form_for @artist, url: save_photo_artist_path(@artist.id), html: { multipart: true } do |form| %>
-				  <%#= form.file_field :photo %>
-				  <%#= image_tag @artist.photo.url(:medium) %>
-				  <%#= form.submit %>
-			<%# end %>
-			<%#= simple_form_for @artist, url: save_photo_artist_path(@artist.id) do |form| %>
-			  <%#= form.input :photo, as: :file %>
-			  <%#= form.submit %>
-			<%# end %>
 			<%= form_for @artist, url: save_paintings_artist_path(@artist.id), html: { multipart: true } do |f| %>
 			  <%= f.file_field :images, multiple: true %>
 			  <%= f.submit "Add paintings" %>
@@ -91,27 +97,13 @@
 		</div>
 	  </div>
 	</div>
-	
-	  <!-- <div class="table-responsive"> -->
-		<!-- <table class="table"> -->
-		   <!-- <tbody> -->
-		  	 <!-- <tr> -->
-		  	 <div class="row">  
-		  	   <% @artist.paintings.each do |painting| %>
-		  	     <div class="col-md-3">
-		  	   <!-- <div class="col-md-3"> -->
-		  	     <!-- <td  width="5%" height="50%"> -->
-                   <%= image_tag painting.image.url(:medium), class: "painting-show", height: "200", width:"200"%>
-                   <div align="center"><%= painting.image_file_name %></div>
-                 <!-- </td> -->
-                 </div>
-               <% end %>
-             </div>
-           <!-- </div> -->
-             <!-- </tr> -->
-           <!-- </tbody> -->
-        <!-- </table> -->
-      <!-- </div> -->
-    
+	<div class="row">  
+	  <% @artist.paintings.each do |painting| %>
+	    <div class="col-md-3">
+	      <%= image_tag painting.image.url(:medium), class: "painting-show", height: "200", width:"200"%>
+	      <div align="center"><%= painting.image_file_name %></div>
+ 	    </div>
+	  <% end %>
+	</div>
 </body>
 </html>

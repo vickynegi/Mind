@@ -29,7 +29,7 @@ gem 'pry', '~> 0.12.2'
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem "paperclip", "~> 5.0.0.beta1"
 gem 'simple_form'
-
+gem 'country_select'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
